@@ -10,28 +10,7 @@ Two hidden layers with 128 and 64 neurons, respectively, using ReLU activation.
 Output layer with 10 neurons (one for each class) using softmax for classification.
 Optimizer: Stochastic Gradient Descent (SGD).
 Loss Function: Cross-Entropy Loss.
-Installation and Setup
-Clone the repository:
 
-bash
-Copy
-Edit
-git clone <repository-url>
-cd <repository-folder>
-Install dependencies:
-
-bash
-Copy
-Edit
-pip install torch pandas scikit-learn matplotlib
-Place the fmnist_small.csv file in the root directory (if not already included).
-
-Run the training script:
-
-bash
-Copy
-Edit
-python ann_project_using_mnist_dataset_.py
 How the Model Works
 Dataset Preprocessing
 The dataset is read from fmnist_small.csv.
@@ -50,15 +29,7 @@ Batch size: 64
 Learning rate: 0.001
 Loss is calculated using Cross-Entropy Loss and minimized using the SGD optimizer.
 Visualizing Predictions
-The script includes functionality to display a random image from the test dataset along with its predicted and true labels. To run it:
-
-bash
-Copy
-Edit
-python -c "from ann_project_using_mnist_dataset_ import display_prediction, model, test_dataset; display_prediction(model, test_dataset)"
-Example Output
-Below is an example of a displayed image with its prediction:
-
+The script includes functionality to display a random image from the test dataset along with its predicted and true labels. 
 
 Results
 Training Loss: Logs are displayed after each epoch during training.
