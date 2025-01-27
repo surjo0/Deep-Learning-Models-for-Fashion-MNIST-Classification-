@@ -1,38 +1,73 @@
-# ANN-Project-using-MNIST-Dataset
+# Deep Learning Models for Fashion MNIST Classification  
+### (ANN and CNN Implementations)
 
-This repository contains a Python implementation of an Artificial Neural Network (ANN) trained on a subset of the Fashion MNIST (fMNIST) dataset to classify images of clothing items into one of ten categories.
+This repository showcases two deep learning approaches—an Artificial Neural Network (ANN) and a Convolutional Neural Network (CNN)—to classify images from the Fashion MNIST (fMNIST) dataset into ten clothing categories.
 
-Features
-Dataset: The Fashion MNIST dataset is used, containing grayscale images (28x28 pixels) of 10 clothing categories such as shirts, pants, and shoes.
-Model Architecture:
-Input layer: Takes 784 features (flattened 28x28 image).
-Two hidden layers with 128 and 64 neurons, respectively, using ReLU activation.
-Output layer with 10 neurons (one for each class) using softmax for classification.
-Optimizer: Stochastic Gradient Descent (SGD).
-Loss Function: Cross-Entropy Loss.
+---
 
-How the Model Works
-Dataset Preprocessing
-The dataset is read from fmnist_small.csv.
-Features are normalized by dividing pixel values by 255.
-Data is split into training and testing sets (80:20 split).
-Neural Network
-The neural network architecture is defined using PyTorch's torch.nn module. The key layers are:
+## Features
+### Dataset  
+The **Fashion MNIST** dataset, containing grayscale images (28x28 pixels) of 10 clothing categories such as shirts, pants, and shoes, is used.  
 
-Linear Layers: Fully connected layers to map input features to the output classes.
-ReLU Activation: Applied to the hidden layers to introduce non-linearity.
-Softmax: Used internally in the output layer to calculate class probabilities during training.
-Training
-The network is trained for 100 epochs using:
+### ANN Model Architecture
+- **Input Layer**: Accepts 784 features (flattened 28x28 images).
+- **Hidden Layers**:  
+  - Two layers with 128 and 64 neurons, respectively, using ReLU activation.  
+- **Output Layer**: 10 neurons (one for each class) with softmax activation for classification.
+- **Optimizer**: Stochastic Gradient Descent (SGD).  
+- **Loss Function**: Cross-Entropy Loss.
 
-Batch size: 64
-Learning rate: 0.001
-Loss is calculated using Cross-Entropy Loss and minimized using the SGD optimizer.
-Visualizing Predictions
-The script includes functionality to display a random image from the test dataset along with its predicted and true labels. 
+### CNN Model Architecture  
+Implemented using PyTorch, the CNN uses convolutional layers to efficiently capture spatial patterns in the images:  
 
-Results
-Training Loss: Logs are displayed after each epoch during training.
-Test Accuracy: Achieves a test accuracy of approximately 74.50%.
-Contribution
-Feel free to submit issues or create pull requests for improvements!
+- **Feature Extraction Layers**:  
+  - Conv2D (32 filters, kernel size = 3, padding = 'same') + ReLU + BatchNorm2D  
+  - MaxPool2D (kernel size = 2, stride = 2)  
+  - Conv2D (64 filters, kernel size = 3, padding = 'same') + ReLU + BatchNorm2D  
+  - MaxPool2D (kernel size = 2, stride = 2)  
+
+- **Classification Layers**:  
+  - Flatten + Fully Connected (64x7x7 → 128) + ReLU + Dropout(0.4)  
+  - Fully Connected (128 → 64) + ReLU + Dropout(0.4)  
+  - Fully Connected (64 → 10)  
+
+---
+
+## How the Models Work
+
+### Dataset Preprocessing
+1. **Data Source**: The dataset is loaded from `fmnist_small.csv`.  
+2. **Normalization**: Pixel values are scaled between 0 and 1 by dividing by 255.  
+3. **Data Splitting**: 80% training and 20% testing split.
+
+### Training
+Both models are trained for **100 epochs** with the following parameters:  
+- **Batch size**: 64  
+- **Learning rate**: 0.001  
+- **Loss Function**: Cross-Entropy Loss  
+- **Optimizer**: SGD for ANN, Adam for CNN  
+
+### Prediction Visualization
+Random test images are displayed along with their **true labels** and **predicted labels** for intuitive visualization of model performance.
+
+---
+
+## Results  
+
+| Model | Test Accuracy | Key Features |  
+|-------|---------------|--------------|  
+| **ANN** | ~74.50% | Simpler architecture, uses fully connected layers |  
+| **CNN** | ~89.75% | Leverages spatial patterns with convolutional layers |  
+
+Training logs and confusion matrices are included for both models to visualize progress and evaluate performance.
+
+---
+
+## Implementation Highlights
+
+### ANN Implementation  
+The ANN implementation follows a basic feed-forward architecture using fully connected layers, suitable for simpler datasets.  
+
+### CNN Implementation  
+The CNN implementation leverages convolutional layers for extracting spatial features, batch normalization for stabilizing training, and dropout for reducing overfitting.  
+
